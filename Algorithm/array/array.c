@@ -93,6 +93,35 @@ void MergeSort(int arr[], int low, int high)
 		cout<<endl;
 	}
 }
+
+void QuickSort(int arr[], int low, int high)
+{
+	if(low < high) 
+	{
+		int key = arr[low];
+		int l = low, h = high;
+		cout<<"QuickSort l:"<<l<<endl;
+		cout<<"QuickSort h:"<<h<<endl;
+		cout<<"QuickSort key:"<<key<<endl;
+		cout<<endl;
+		while(l < h) {
+			while(arr[l] < key) l++;
+			while(arr[h] >= key) h--;
+			if(h > l) 
+			{
+				int temp = arr[l];
+				arr[l] = arr[h];
+				arr[h] = temp;
+			}
+			for(int i = 0; i < high+1; i ++) {
+				cout<<"QuickSort arr["<<i<<"]:"<<arr[i]<<endl;
+			}
+			cout<<endl;
+			QuickSort(arr, low, l-1);
+			QuickSort(arr, l + 1, high);
+		}
+	}
+}
 int main() 
 {
 	int a[] = {7, 2, 4, 6, 3, 8, 4};
@@ -100,7 +129,8 @@ int main()
 	cout<<"a size:"<<length<<endl;
 	//bunbbleSort(a, length);
 	//insertionSort(a, length);
-	MergeSort(a, 0,  length-1);
+	//MergeSort(a, 0,  length-1);
+	QuickSort(a, 0, length-1);
 	for(int i = 0; i < length; i ++) {
 		cout<<"a["<<i<<"]:"<<a[i]<<endl;
 	}
